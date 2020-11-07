@@ -1,0 +1,38 @@
+<div class="container">
+     <h1 *ngIf=" hotels && hotels.length>0 " align='center' >{{titl}}</h1>
+     <button style="  height:40px"  class="btn btn-primary" (click)="showing() "><b>{{afficher(show)}}</b>
+        <span class="material-icons"  > {{show ? 'visibility_off':'visibility'}}</span>
+
+</button>
+<div class="my-2">
+  <div class="row">
+    <div class="col-md-4">
+
+<span  > <b> filtre actuel :</b> </span>
+<b>{{hotelFilter}}</b>
+    </div>
+    <div class="md-8 form-group"></div>
+    <input style="width: 400px" type="text" class="form-control" [(ngModel)]="hotelFilter">
+    <br><br><br><br>
+
+
+</div>
+</div>
+<div class="row row-cols-1 row-cols-md-3">
+        <div class="col mb-4" *ngFor="let hotel of filteredhotels">
+    <div class="card" style="width: 18rem;">
+        <img class="card-img-top"  title={{hotel.name}}  src= {{hotel.imageUrl}}>
+        <div class="card-body">
+          <h5 class="card-title">{{hotel.name|uppercase}}</h5>
+          <p class="card-text">{{hotel.description}}</p>
+          <p class="card-text"><u>{{hotel.price|currency:'EUR':'symbol':'1.2-2':'fr'}}</u></p>
+          <app-star-rating [rating]="hotel.rating"> </app-star-rating>
+          <span class="btn btn-secondary"   *ngIf="show">nouveau</span>
+        </div>
+      </div>
+    </div>
+</div>
+</div>
+
+
+
